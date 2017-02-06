@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package events;
+package GUI;
 
 /**
  *
  * @author Matthew
  */
-public class Event {
+public class GUI {
     
 }
