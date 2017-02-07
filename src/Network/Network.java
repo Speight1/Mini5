@@ -10,5 +10,8 @@ package Network;
  * @author Matthew
  */
 public class Network {
-    
+    public static void main(String args){
+        
+        System.out.println(" Mods made to github!!");
+    }
 }
