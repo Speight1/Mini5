@@ -4,10 +4,19 @@ PROJECT IF PEOPLE ARE DOING IT SIMULTANEOUSLY.
  */
 package GUI;
 
+import Items.Storage;
+
 /**
  *
  * @author Matthew
  */
 public class GUI {
-    
+    public static void drawGUI(){
+        
+        
+        for(int i = 0; i< Storage.LOCAL_STORAGE.numberOfSprites; i++){ //Toby, you will use this to fetch the locations of the sprites and then draw all of them in the array
+            //Draw Sprite
+        }
+        
+    }
 }
