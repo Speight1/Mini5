@@ -31,10 +31,11 @@ public class Network {
              
                     while(true){
                     in = getInputStream(port);
-                    
+                
                     processInput(in);
-                    
                     cleanUp();
+                   
+                    
                     }
                 
                 
@@ -46,7 +47,7 @@ public class Network {
         try{
         in.close();
         inSocket.close();
-            System.out.println("Cleaned up!!");
+            //System.out.println("Cleaned up!!");
         } catch(Exception e ){System.out.println("Cleanup failed");}
         
     }

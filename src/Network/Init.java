@@ -5,6 +5,7 @@
  */
 package Network;
 
+import Items.Storage;
 import Network.Network;
 
 /**
@@ -19,6 +20,8 @@ public class Init {
     public static void main(String[] args) {
        try {
            System.out.println("Starting on: "+Network.getIp());
+           
+            Storage.LOCAL_STORAGE = new Storage(Settings.spriteLimit);
             Network n = new Network(Settings.port);
             
             System.out.println("Started");

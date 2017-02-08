@@ -11,7 +11,8 @@ package Network;
  */
 public class Settings {
     public static int port = 2911;
-    public static int cookieLength = 950;
+    public static int cookieLength = 10;
     public static String userName = "root";
     public static String password = "test";
+    public static int spriteLimit = 100;
 }

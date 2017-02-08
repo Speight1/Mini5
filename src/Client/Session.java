@@ -75,4 +75,35 @@ public class Session {
         return false;
         }
     }
+    
+   static  double time =0;
+   static boolean run = true;
+    public static void main(String[] args){
+        
+        
+        new Thread(new Runnable(){public void run(){
+        try{
+        while(run){
+            Thread.sleep(100);
+            time += 0.1;
+        }
+        }
+        catch(Exception e){
+            
+        }
+        
+        }}).start();
+        
+        for(int i = 0; i<=100; i++){
+        Session s = new Session("10.59.0.23");
+        s.intiateSession(Settings.userName, Settings.password);
+        }
+        run = false;
+        
+        System.out.println("Time: "+time);
+        
+        
+    }
+    
+    
 }
