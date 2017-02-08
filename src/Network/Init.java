@@ -20,6 +20,7 @@ public class Init {
        try {
            System.out.println("Starting on: "+Network.getIp());
             Network n = new Network(Settings.port);
+            
             System.out.println("Started");
         } catch (Exception e) {
             System.out.println("Catched");
