@@ -18,5 +18,6 @@ public class pic extends JPanel{
     public void createImage(Graphics g){
         super.paintComponent(g);
         image = new ImageIcon("");
-    }
+               
+}
 }
