@@ -13,9 +13,14 @@ package Items;
 public class Storage {
     //Local storage container where the client's or server's version of the storage is stored
     public static Storage LOCAL_STORAGE;
-    //For Storage Object
+    //For Storage Ob ject
     public int numberOfSprites =0;
     Sprite[] sprites;
+    
+    public Storage(Storage s){
+       
+    }
+    
     
     public Storage(int spriteLimit){
         sprites = new Sprite[spriteLimit];

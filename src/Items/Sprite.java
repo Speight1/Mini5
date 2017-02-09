@@ -44,6 +44,7 @@ public class Sprite {
        
        //To set it to a new location
        s.setPos(5, 7);
+       s.setVisible(true);
     }
     
 }
