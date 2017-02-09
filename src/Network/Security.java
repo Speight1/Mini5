@@ -12,7 +12,9 @@ import java.util.Random;
  * @author mathew
  */
 public class Security {
-    private static String[] AUTHENTICATED = new String[100];
+    
+    private static int clientLimit = 150;
+    private static String[] AUTHENTICATED = new String[clientLimit];
     private static int amountAuthenticated = 0;
     public static void processHeader(RequestHeader h){
         
@@ -51,7 +53,7 @@ public class Security {
     
     private static void processNewSession(RequestHeader h){
         System.out.println("Authenticating...");
-                if(authenticate(h.PARAMETERS[0],h.PARAMETERS[1])){
+                if(authenticate(h.PARAMETERS[0],h.PARAMETERS[1])&&(amountAuthenticated<clientLimit)){
                     Object[] assets = new Object[1];
                     assets[0] = genCookie(Settings.cookieLength);
                     
@@ -66,6 +68,7 @@ public class Security {
                     
                 }
                 else{
+                    System.out.println("NOT AUTHED!");
                     try{
                     Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED,null)); 
                     }
