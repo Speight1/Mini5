@@ -15,7 +15,7 @@ public class Storage {
     public static Storage LOCAL_STORAGE;
     //For Storage Ob ject
     public int numberOfSprites =0;
-    Sprite[] sprites;
+    public Sprite[] sprites;
     
     public Storage(Storage s){
        
