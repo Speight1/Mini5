@@ -37,7 +37,7 @@ public class Storage {
         Storage.LOCAL_STORAGE = new Storage(spriteLimit);
         
         //adding a sprite to the container
-        Sprite s1 = new Sprite(5,3); // create a new sprite
+        Sprite s1 = new Sprite(5,3,"id"); // create a new sprite
         LOCAL_STORAGE.addNewSprite(s1); // add it through the new container created earlier
     }
    

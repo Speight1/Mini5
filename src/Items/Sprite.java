@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
  * @author Computing Admin
  */
 public class Sprite {
+    public String sID;
     public ImageIcon image;
     public boolean spriteVisible = true; // Sets whether the sprite is visible, this will be used by toby when drawing the GUI
     public Point spriteLocation; // Stores the location, this will be used by Matt (S) when handling a change in sprite location
@@ -18,11 +19,13 @@ public class Sprite {
    public void setVisible(boolean visible){
        spriteVisible = visible; 
    }
-    public Sprite (Point location){
+    public Sprite (Point location, String ID){
+        sID = ID;
         spriteLocation = location;
     }
     
-    public Sprite(int xPos, int yPos){
+    public Sprite(int xPos, int yPos, String ID){
+         sID = ID;
         spriteLocation = new Point();
         setPos(xPos, yPos);
     }
@@ -34,7 +37,7 @@ public class Sprite {
     
     public void setPos(int x, int y){
         spriteLocation.x =x;
-        spriteLocation.x =y;
+        spriteLocation.y =y;
     }
     
   
@@ -42,7 +45,7 @@ public class Sprite {
     public static void main (String[] args){
         
        //To create a new sprite
-       Sprite s = new Sprite(4,4);
+       Sprite s = new Sprite(4,4,"");
        
        //To set it to a new location
        s.setPos(5, 7);
