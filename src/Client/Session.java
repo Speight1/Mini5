@@ -15,6 +15,7 @@ import Network.Settings;
  * @author mathew
  */
 public class Session {
+    
     public String sessionHost = null;
     public String cookie = null;
     public boolean authenticated = false;
@@ -28,9 +29,13 @@ public class Session {
         if(authenticated){
         Network.send(sessionHost, Settings.port, new RequestHeader(Network.getIp(), RequestHeader.COMMAND, cookie, parameters, assets));
             System.out.println("Request sent");
+       
+         
         ResponceHeader res = Network.recieve(Settings.port);
             System.out.println("Responce captured - good job team!!");
         return res;
+         
+       
         }
         else{
             System.out.println("Not authenticated!");
@@ -77,10 +82,10 @@ public class Session {
     }
     
    static  double time =0;
-   static boolean run = true;
+   //static boolean run = true;
     public static void main(String[] args){
         
-        
+        /*
         new Thread(new Runnable(){public void run(){
         try{
         while(run){
@@ -102,7 +107,7 @@ public class Session {
         
         System.out.println("Time: "+time);
         
-        
+        */
     }
     
     

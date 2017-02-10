@@ -7,6 +7,7 @@ package Network;
 
 //import com.sun.image.codec.jpeg.JPEGCodec;
 //import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import Items.Storage;
 import Network.RequestHeader;
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -35,12 +36,16 @@ public class Tools {
         System.out.println("Parsing Command \""+head.PARAMETERS[0]+"\"");
         String utility = head.PARAMETERS[0].toLowerCase();
         switch(utility){
-           
-            case "MoveSprite":
+            case "fetchstorage":
+              Object[] arr = {Storage.LOCAL_STORAGE};
+              Network.sendSuccessfulResponce(head, arr);
+                
+                break;
+            case "movesprite":
                 
                 break;
             
-            case "CreateSprite":
+            case "createsprite":
                 
                 break;
             

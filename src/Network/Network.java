@@ -108,15 +108,42 @@ public class Network {
     }
     
     public static void sendFailedResponce(RequestHeader h, Object[] returnObjects){
+        for(int i = 0; i<10; i++){
         try{
-       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED, returnObjects));} catch(Exception e){System.out.println("Failed to send responce.");}
+            System.out.println("ATTEMPT No."+i);
+       Thread.sleep(100);
+       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED, returnObjects));
+        i=15;
+        
+        } 
+        
+        catch(Exception e){
+           
+           
+           System.out.println("Failed to send responce.");
+       
+       }
+        }
         
     }
     
      public static void sendSuccessfulResponce(RequestHeader h, Object[] returnObjects){
+       for(int i = 0; i<10; i++){
         try{
-       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.SUCCESSFUL, returnObjects));} catch(Exception e){System.out.println("Failed to send responce.");}
+            System.out.println("ATTEMPT No."+i);
+       Thread.sleep(100);
+       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.SUCCESSFUL, returnObjects));
+        i=15;
         
+        } 
+        
+        catch(Exception e){
+           
+           
+           System.out.println("Failed to send responce.");
+       
+       }
+        }
     }
     
     

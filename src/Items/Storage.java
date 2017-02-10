@@ -6,11 +6,13 @@ This will be used by the server to allocate all of the clients the positions of 
  */
 package Items;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Computing Admin
  */
-public class Storage {
+public class Storage implements Serializable{
     //Local storage container where the client's or server's version of the storage is stored
     public static Storage LOCAL_STORAGE;
     //For Storage Ob ject

@@ -37,10 +37,10 @@ public class second extends JPanel implements ActionListener{
 
     @Override
     public void paintComponent(Graphics g) {
-        Sprite s = new Sprite(4, 5);
+        Sprite s = new Sprite(4, 5,"id");
 
-        s.g2 = (Graphics2D) g;
-        s.g2.draw(new Ellipse2D.Double(x,y,60,60));
+      //  s.g2 = (Graphics2D) g;
+      //  s.g2.draw(new Ellipse2D.Double(x,y,60,60));
         
     }
 

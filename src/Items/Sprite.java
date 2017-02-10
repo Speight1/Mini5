@@ -7,13 +7,14 @@ import GUI.Processing;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Point;
+import java.io.Serializable;
 
 
 /**
  *
  * @author Computing Admin
  */
-public class Sprite {
+public class Sprite implements Serializable{
     public String sID;
     public Color backColour = Processing.genColour();
     

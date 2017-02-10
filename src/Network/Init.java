@@ -1,12 +1,15 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this templae file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Network;
 
+import GUI.Window;
+import Items.Sprite;
 import Items.Storage;
 import Network.Network;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,7 +24,22 @@ public class Init {
        try {
            System.out.println("Starting on: "+Network.getIp());
            
-            Storage.LOCAL_STORAGE = new Storage(Settings.spriteLimit);
+             Storage.LOCAL_STORAGE = new Storage(10000);
+        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, "Mathew"));
+        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(20,20, "Toby"));
+        
+        Window w = new Window();
+      
+        
+        JFrame f = new JFrame();
+        f.setSize(500, 500);
+        w.setBounds(f.getBounds());
+       
+        f.add(w);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+        
+        
             Network n = new Network(Settings.port);
             
             System.out.println("Started");

@@ -6,10 +6,13 @@
 package GUI;
 
 
+import Client.Session;
 import Events.movement;
 import GUI.Processing;
 import Items.Sprite;
 import Items.Storage;
+import Network.ResponceHeader;
+import Network.Settings;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,6 +26,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Random;
@@ -63,11 +68,42 @@ public class Window extends JPanel implements ActionListener {
         }
             }
         });
+     
+     
+     this.addMouseListener(new MouseListener() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+         Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = e.getX();
+          Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = e.getY();
+        
+    }
+         @Override
+         public void mousePressed(MouseEvent e) {
+             
+         }
+
+         @Override
+         public void mouseReleased(MouseEvent e) {
+             
+         }
+
+         @Override
+         public void mouseEntered(MouseEvent e) {
+             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = e.getX();
+          Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = e.getY();
+         }
+
+         @Override
+         public void mouseExited(MouseEvent e) {
+          
+         }
+     });
         
         
     }
     public void paintComponent(Graphics g){
          Graphics2D graph = (Graphics2D) g;
+         
         Processing.drawStorage(graph, Storage.LOCAL_STORAGE);
          graph.finalize();
          this.grabFocus();
@@ -77,7 +113,7 @@ public class Window extends JPanel implements ActionListener {
     
     
     public void actionPerformed(ActionEvent e) {
-      
+      this.
        
        repaint();
       
@@ -110,12 +146,18 @@ public class Window extends JPanel implements ActionListener {
     public static void main(String[] args){
         System.out.println("Starting");
         
-        Storage.LOCAL_STORAGE = new Storage(10000);
-        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, "Mathew"));
-        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(20,20, "Toby"));
+       
 
+        
+        
+        Session s = new Session ("10.59.0.23");
+        s.intiateSession(Settings.userName, Settings.password);
+        String[] array = {"FetchStorage"};
+        Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array,null).RESPONCE_ASSETS[0];
+        
         Window w = new Window();
       
+        
         JFrame f = new JFrame();
         f.setSize(500, 500);
         w.setBounds(f.getBounds());
@@ -123,6 +165,19 @@ public class Window extends JPanel implements ActionListener {
         f.add(w);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
+        
+        
+        new Thread(new Runnable(){public void run(){
+        
+        while(true){
+            try{Thread.sleep(100);}catch(Exception e){}
+             Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array,null).RESPONCE_ASSETS[0];
+            
+        }
+        
+        
+        
+        }}).start();
     }
     
     
