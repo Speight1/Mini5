@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Client;
+package GUI;
 
 import Items.Sprite;
 import Items.Storage;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
@@ -24,16 +25,19 @@ public class Processing {
         return new Color(r,g,b);
     }
     public static void drawSprite(Graphics2D graph, Sprite spr){
-        int radius = (int) (Math.random()*20);
+        int radius = 5;
+         graph.setColor(spr.backColour);
         Shape theCircle = new Ellipse2D.Double(spr.getPos().x - radius, spr.getPos().y - radius, 2.0 * radius, 2.0 * radius);
-       graph.drawString(spr.sID, spr.spriteLocation.x +5, spr.spriteLocation.y+10);
+       
+        Font currentFont = graph.getFont();
+Font newFont = currentFont.deriveFont(20F);
+graph.setFont(newFont);
+        graph.drawString(spr.sID, spr.spriteLocation.x +15, spr.spriteLocation.y+10);
         
-        graph.setColor(genColour());
+        
         graph.fill(theCircle);
         graph.draw(theCircle);
-        
-        
-        
+
     }
     
     public static void drawStorage(Graphics2D graph, Storage stor){

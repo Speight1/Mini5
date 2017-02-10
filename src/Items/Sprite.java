@@ -3,9 +3,11 @@ This class stores the properties of the sprites
  */
 package Items;
 
-import java.awt.Graphics2D;
+import GUI.Processing;
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.Point;
-import javax.swing.ImageIcon;
+
 
 /**
  *
@@ -13,10 +15,23 @@ import javax.swing.ImageIcon;
  */
 public class Sprite {
     public String sID;
-    public ImageIcon image;
-    public Graphics2D g2;
+    public Color backColour = Processing.genColour();
+    
+    public Image image = null;
+ 
     public boolean spriteVisible = true; // Sets whether the sprite is visible, this will be used by toby when drawing the GUI
     public Point spriteLocation; // Stores the location, this will be used by Matt (S) when handling a change in sprite location
+    
+    
+   
+    public void setPicture(String directory){
+        
+       // image = new Image() {};
+    }
+    
+   public void setBackground(Color colour){
+       backColour = colour; 
+   }
     
    public void setVisible(boolean visible){
        spriteVisible = visible; 
