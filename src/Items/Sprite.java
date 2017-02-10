@@ -3,6 +3,7 @@ This class stores the properties of the sprites
  */
 package Items;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 
@@ -13,6 +14,7 @@ import javax.swing.ImageIcon;
 public class Sprite {
     public String sID;
     public ImageIcon image;
+    public Graphics2D g2;
     public boolean spriteVisible = true; // Sets whether the sprite is visible, this will be used by toby when drawing the GUI
     public Point spriteLocation; // Stores the location, this will be used by Matt (S) when handling a change in sprite location
     
