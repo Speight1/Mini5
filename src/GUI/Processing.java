@@ -27,7 +27,7 @@ public class Processing {
     public static void drawSprite(Graphics2D graph, Sprite spr){
         int radius = 5;
          graph.setColor(spr.backColour);
-        Shape theCircle = new Ellipse2D.Double(spr.getPos().x - radius, spr.getPos().y - radius, 2.0 * radius, 2.0 * radius);
+        Shape theCircle = new Ellipse2D.Double( spr.getPos().x -radius, spr.getPos().y - radius, 2.0 * radius, 2.0 * radius);
        
         Font currentFont = graph.getFont();
 Font newFont = currentFont.deriveFont(20F);

@@ -16,7 +16,7 @@ public class events extends JFrame{
         second p = new second();
         
         f.setTitle("");
-        f.setSize(400,600);
+        f.setSize(600,500);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.add(p);
         f.setVisible(true);
