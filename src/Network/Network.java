@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author mathew
  */
 public class Network {
-
+    public Cue requestCue;
     ObjectInputStream in;
     ServerSocket inSocket;
 
@@ -80,7 +80,9 @@ public class Network {
         if(recieved.getClass().equals(RequestHeader.class)){
             RequestHeader h = (RequestHeader) recieved;
             System.out.println("New Responce from "+h.IP+"\nRequest code: "+h.REQUEST_TYPE);
-            Security.processHeader(h);
+            requestCue.addToCue(h);
+            
+         //   Security.processHeader(h);
             
             
         }
@@ -89,7 +91,7 @@ public class Network {
         
         catch(Exception e){
             
-            System.out.println("Failed to process input");
+            System.out.println("Failed to process input" +e.getMessage());
         }
     }
     public static ResponceHeader recieve(int port){
@@ -164,7 +166,8 @@ public class Network {
         
     }
     public Network(int port) throws IOException {
-
+        requestCue = new Cue(20);
+        
         startNetwork(port);
 
     }
