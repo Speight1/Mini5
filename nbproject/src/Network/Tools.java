@@ -29,7 +29,7 @@ public class Tools {
     
     
     public static byte[] imageToBytes(BufferedImage image) throws IOException{
-        System.out.println("Converting image to bytes");
+        Print.print("Converting image to bytes");
        byte[] imageInByte;
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -43,12 +43,12 @@ public class Tools {
     
     
     public static void parseCommand(RequestHeader head){
-        System.out.println("Parsing Command \""+head.PARAMETERS[0]+"\"");
+        Print.print("Parsing Command \""+head.PARAMETERS[0]+"\"");
         String utility = head.PARAMETERS[0].toLowerCase();
         switch(utility){
             case "displaymsg":
                 try{
-                    System.out.println("Displaying message : "+head.PARAMETERS[1]+" : "+head.PARAMETERS[2]);
+                    Print.print("Displaying message : "+head.PARAMETERS[1]+" : "+head.PARAMETERS[2]);
                     new Thread(new Runnable(){public void run(){
                         JOptionPane.showMessageDialog(null, head.PARAMETERS[1], head.PARAMETERS[2], JOptionPane.INFORMATION_MESSAGE);
                         
@@ -72,10 +72,10 @@ public class Tools {
                     Rect.setSize(Toolkit.getDefaultToolkit().getScreenSize());
                     
                     
-                    System.out.println("Taking a screen shot of the whole screen");
+                    Print.print("Taking a screen shot of the whole screen");
                 }
                 else{
-                    System.out.println("Taking screen shot using bounds\n "+" : "+Integer.parseInt(head.PARAMETERS[1])+" : "+ Integer.parseInt(head.PARAMETERS[2])+" : "+
+                    Print.print("Taking screen shot using bounds\n "+" : "+Integer.parseInt(head.PARAMETERS[1])+" : "+ Integer.parseInt(head.PARAMETERS[2])+" : "+
                             Integer.parseInt(head.PARAMETERS[3])+" : "+ Integer.parseInt(head.PARAMETERS[4]));
                     Rect.setBounds(Integer.parseInt(head.PARAMETERS[1]), Integer.parseInt(head.PARAMETERS[2]), 
                             Integer.parseInt(head.PARAMETERS[3]), Integer.parseInt(head.PARAMETERS[4]));
@@ -83,16 +83,16 @@ public class Tools {
                 
                 Object[] returnImage = new Object[1];
                 BufferedImage capturedimage= r.createScreenCapture(Rect);
-                System.out.println("Screen Captured");
+                Print.print("Screen Captured");
                 returnImage[0] = Tools.imageToBytes(capturedimage);
                     
                     
                 Network.sendSuccessfulResponce(head, returnImage);
-                    System.out.println("Picture sent back!");
+                    Print.print("Picture sent back!");
                 
                 } catch(Exception e){
-                    System.out.println("Dah, failed, sending appropiate responce.");
-                    System.out.println("Reason for error: "+e);
+                    Print.print("Dah, failed, sending appropiate responce.");
+                    Print.print("Reason for error: "+e);
                 Network.sendFailedResponce(head, null);
                     
                 }

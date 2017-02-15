@@ -8,6 +8,7 @@ package Network;
 import GUI.Window;
 import Items.Sprite;
 import Items.Storage;
+import Misc.Print;
 import Network.Network;
 import javax.swing.JFrame;
 
@@ -22,7 +23,7 @@ public class Init {
      */
     public static void main(String[] args) {
        try {
-           System.out.println("Starting on: "+Network.getIp());
+           Print.print("Starting on: "+Network.getIp());
            
              Storage.LOCAL_STORAGE = new Storage(10000);
         Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, "Mathew"));
@@ -35,16 +36,21 @@ public class Init {
         f.setSize(500, 500);
         w.setBounds(f.getBounds());
        
-        f.add(w);
+       f.add(w);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
         
         
+        
+        
+        
+        
+        
             Network n = new Network(Settings.port);
             
-            System.out.println("Started");
+            Print.print("Started");
         } catch (Exception e) {
-            System.out.println("Catched");
+            Print.print("Catched");
         }
     }
     

@@ -8,6 +8,7 @@ package Network;
 //import com.sun.image.codec.jpeg.JPEGCodec;
 //import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import Items.Storage;
+import Misc.Print;
 import Network.RequestHeader;
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -33,7 +34,7 @@ public class Tools {
     
     
     public static void parseCommand(RequestHeader head){
-        System.out.println("Parsing Command \""+head.PARAMETERS[0]+"\"");
+        Print.print("Parsing Command \""+head.PARAMETERS[0]+"\"");
         String utility = head.PARAMETERS[0].toLowerCase();
         switch(utility){
             case "fetchstorage":

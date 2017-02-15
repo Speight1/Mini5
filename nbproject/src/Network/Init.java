@@ -18,11 +18,11 @@ public class Init {
      */
     public static void main(String[] args) {
        try {
-           System.out.println("Starting on: "+Network.getIp());
+           Print.print("Starting on: "+Network.getIp());
             Network n = new Network(Settings.port);
-            System.out.println("Started");
+            Print.print("Started");
         } catch (Exception e) {
-            System.out.println("Catched");
+            Print.print("Catched");
         }
     }
     

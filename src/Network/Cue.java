@@ -5,6 +5,8 @@
  */
 package Network;
 
+import Misc.Print;
+
 /**
  *
  * @author mathew
@@ -20,27 +22,29 @@ public class Cue {
     int requestLimit;
     int requestsAmount = 0;
     public Cue(int cueLimit){
-        System.out.println("Cue instance created!");
+        Print.print("Cue instance created! Named \""+this.getClass().getCanonicalName()+"\".");
         requestLimit = cueLimit;
         requests = new RequestHeader[cueLimit];
         initialiseArray();
-        System.out.println("Starting cue master thread...");
+        Print.print("Starting cue master thread...");
         processor.start();    }
     
     public void printRequests(){
         for(int i = 0; i< requestsAmount; i++){
-            System.out.println("Request ["+i+"] - "+requests[i].IP);
+            Print.print("Request ["+i+"] - "+requests[i].IP);
             
         }
     }
     
     public void addToCue(RequestHeader toAdd){
         try{
-        System.out.println("Adding..");
-        System.out.println("Adding to cue - "+requests[0].IP);
+        Print.print("Adding..");
+        
         requests[requestsAmount] = toAdd;
+        Print.print("Added to cue - "+requests[0].IP);
         requestsAmount++;
-        } catch(Exception e ){System.out.println("Failed to add to cue. Reason "+e.getMessage()); }
+            Print.print("Amount of requests are now: "+requestsAmount);
+        } catch(Exception e ){Print.print("Failed to add to cue. Reason "+e.getCause()); }
        
     }
     
@@ -60,13 +64,20 @@ public class Cue {
     }
     
     public void processRequests(){
+        try{
      while(true){
+        // System.out.print(" C"+this.requestsAmount);
+         Thread.sleep(10);
          if(requestsAmount >0){
-             System.out.println("Processing request - "+requests[0].IP);
+           
+             Print.print("Processing request - "+requests[0].IP);
          Security.processHeader(requests[0]);
-         this.removeFromCue(0);
+         removeFromCue(0);
+         
          }
+        
      }   
+        } catch(Exception e ){Print.print("Cue master broke down.");}
         
     }
     
@@ -77,10 +88,10 @@ public class Cue {
         c.addToCue(new RequestHeader("10.59.0.23",0,null));
         c.addToCue(new RequestHeader("10.59.0.24",0,null));
          c.addToCue(new RequestHeader("10.59.0.25",0,null));
-         System.out.println("Before:");
+         Print.print("Before:");
          c.printRequests();
          c.removeFromCue(1);
-         System.out.println("\nAfter:");
+         Print.print("\nAfter:");
          c.printRequests();
         
         

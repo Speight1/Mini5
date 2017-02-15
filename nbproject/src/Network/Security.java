@@ -50,7 +50,7 @@ public class Security {
     }
     
     private static void processNewSession(RequestHeader h){
-        System.out.println("Authenticating...");
+        Print.print("Authenticating...");
                 if(authenticate(h.PARAMETERS[0],h.PARAMETERS[1])){
                     Object[] assets = new Object[1];
                     assets[0] = genCookie(Settings.cookieLength);
@@ -61,7 +61,7 @@ public class Security {
                     
                     }
                     catch(Exception e){
-                        System.out.println("Failed to send back");
+                        Print.print("Failed to send back");
                     }
                     
                 }
@@ -69,7 +69,7 @@ public class Security {
                     try{
                     Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED,null)); 
                     }
-                    catch(Exception e){System.out.println("Thief!");}
+                    catch(Exception e){Print.print("Thief!");}
                 }
         
     }
@@ -94,7 +94,7 @@ public class Security {
             str += seed.charAt(new Random().nextInt(seed.length()));
             
         }
-        System.out.println("New Cookie "+str);
+        Print.print("New Cookie "+str);
         AUTHENTICATED[amountAuthenticated] = str;
         amountAuthenticated++;
         return str;

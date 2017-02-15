@@ -5,6 +5,7 @@
  */
 package Client;
 
+import Misc.Print;
 import Network.Network;
 import Network.RequestHeader;
 import Network.ResponceHeader;
@@ -28,17 +29,17 @@ public class Session {
             
         if(authenticated){
         Network.send(sessionHost, Settings.port, new RequestHeader(Network.getIp(), RequestHeader.COMMAND, cookie, parameters, assets));
-            System.out.println("Request sent");
+            Print.print("Request sent");
        
          
         ResponceHeader res = Network.recieve(Settings.port);
-            System.out.println("Responce captured - good job team!!");
+            Print.print("Responce captured - good job team!!");
         return res;
          
        
         }
         else{
-            System.out.println("Not authenticated!");
+            Print.print("Not authenticated!");
         return null;
             
         
@@ -47,7 +48,7 @@ public class Session {
         
         }
         catch(Exception e){
-            System.out.println("Send Failed - host disconnected???!!!");
+            Print.print("Send Failed - host disconnected???!!!");
             
             return null;}
     }
@@ -61,7 +62,7 @@ public class Session {
         ResponceHeader  res = Network.recieve(Settings.port);
         
         if(res.RESPONCE_CODE == ResponceHeader.SUCCESSFUL){
-            System.out.println(res.RESPONCE_ASSETS.getClass());
+            Print.print(res.RESPONCE_ASSETS.getClass());
             cookie =  (String) res.RESPONCE_ASSETS[0];
            
             authenticated = true;
@@ -76,7 +77,7 @@ public class Session {
         
         }
         catch(Exception e){
-            System.out.println("Failed to connect");
+            Print.print("Failed to connect");
         return false;
         }
     }
@@ -105,7 +106,7 @@ public class Session {
         }
         run = false;
         
-        System.out.println("Time: "+time);
+        Print.print("Time: "+time);
         
         */
     }

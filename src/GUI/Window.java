@@ -11,6 +11,7 @@ import Events.movement;
 import GUI.Processing;
 import Items.Sprite;
 import Items.Storage;
+import Misc.Print;
 import Network.ResponceHeader;
 import Network.Settings;
 import java.awt.BasicStroke;
@@ -103,7 +104,7 @@ public class Window extends JPanel implements ActionListener {
     }
     public void paintComponent(Graphics g){
          Graphics2D graph = (Graphics2D) g;
-         
+         g.clearRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
         Processing.drawStorage(graph, Storage.LOCAL_STORAGE);
          graph.finalize();
          this.grabFocus();
@@ -122,7 +123,7 @@ public class Window extends JPanel implements ActionListener {
     
   //   @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("EEE         ");
+        Print.print("EEE         ");
         int code = e.getKeyCode();
         movement m = new movement();
 
@@ -144,7 +145,7 @@ public class Window extends JPanel implements ActionListener {
     
     
     public static void main(String[] args){
-        System.out.println("Starting");
+        Print.print("Starting");
         
        
 
@@ -178,6 +179,11 @@ public class Window extends JPanel implements ActionListener {
         
         
         }}).start();
+        
+        
+       
+        
+        
     }
     
     

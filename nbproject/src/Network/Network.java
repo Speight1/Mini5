@@ -46,20 +46,20 @@ public class Network {
         try{
         in.close();
         inSocket.close();
-            System.out.println("Cleaned up!!");
-        } catch(Exception e ){System.out.println("Cleanup failed");}
+            Print.print("Cleaned up!!");
+        } catch(Exception e ){Print.print("Cleanup failed");}
         
     }
     
     private ObjectInputStream getInputStream(int port){
         try{
                     inSocket = new ServerSocket(port, 10);
-                    System.out.println("Attempting to open on " + inSocket.getLocalPort());
+                    Print.print("Attempting to open on " + inSocket.getLocalPort());
                     Socket s = inSocket.accept();
-                    System.out.println("incoming!");
+                    Print.print("incoming!");
                     return new ObjectInputStream(s.getInputStream());
         }
-        catch(Exception e ){ System.out.println("Failed to get input stream.");
+        catch(Exception e ){ Print.print("Failed to get input stream.");
         return null;
         }
 
@@ -78,7 +78,7 @@ public class Network {
         
         if(recieved.getClass().equals(RequestHeader.class)){
             RequestHeader h = (RequestHeader) recieved;
-            System.out.println("New Responce from "+h.IP+"\nRequest code: "+h.REQUEST_TYPE);
+            Print.print("New Responce from "+h.IP+"\nRequest code: "+h.REQUEST_TYPE);
             Security.processHeader(h);
             
             
@@ -88,7 +88,7 @@ public class Network {
         
         catch(Exception e){
             
-            System.out.println("Failed to process input");
+            Print.print("Failed to process input");
         }
     }
     public static ResponceHeader recieve(int port){
@@ -97,24 +97,24 @@ public class Network {
         ObjectInputStream inp = new ObjectInputStream(sock.accept().getInputStream());
         ResponceHeader recieved = (ResponceHeader) inp.readObject();
         inp.close(); sock.close();
-        System.out.println("Recieved a responce");
+        Print.print("Recieved a responce");
         return recieved;
         }
         catch(Exception e){
-            System.out.println(e);
+            Print.print(e);
         return null;
         }
     }
     
     public static void sendFailedResponce(RequestHeader h, Object[] returnObjects){
         try{
-       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED, returnObjects));} catch(Exception e){System.out.println("Failed to send responce.");}
+       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.FAILED, returnObjects));} catch(Exception e){Print.print("Failed to send responce.");}
         
     }
     
      public static void sendSuccessfulResponce(RequestHeader h, Object[] returnObjects){
         try{
-       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.SUCCESSFUL, returnObjects));} catch(Exception e){System.out.println("Failed to send responce.");}
+       Network.send(h.IP, Settings.port, new ResponceHeader(ResponceHeader.SUCCESSFUL, returnObjects));} catch(Exception e){Print.print("Failed to send responce.");}
         
     }
     
@@ -131,7 +131,7 @@ public class Network {
        
        out.close();
        socket.close();
-        System.out.println("Done!");
+        Print.print("Done!");
        
         
     }
@@ -160,7 +160,7 @@ public class Network {
         
        //Network.send("localhost", Settings.port, new RequestHeader("localhost", RequestHeader.AUTHENTICATE, s) );
        
-        System.out.println(getIp());
+        Print.print(getIp());
     }
 
 }
