@@ -11,6 +11,7 @@ import Items.Storage;
 import Misc.Print;
 import Network.Network;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,8 @@ public class Init {
            Print.print("Starting on: "+Network.getIp());
            
              Storage.LOCAL_STORAGE = new Storage(10000);
-        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, "Mathew"));
+             String name = JOptionPane.showInputDialog(null, "What is your name?");
+        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, name));
         Storage.LOCAL_STORAGE.addNewSprite(new Sprite(20,20, "Toby"));
         
         Window w = new Window();
