@@ -71,7 +71,7 @@ public class Window extends JPanel implements ActionListener {
         });
      
      
-     this.addMouseListener(new MouseListener() {
+     /*this.addMouseListener(new MouseListener() {
     @Override
     public void mouseClicked(MouseEvent e) {
          Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = e.getX();
@@ -99,6 +99,7 @@ public class Window extends JPanel implements ActionListener {
           
          }
      });
+*/
         
         
     }
@@ -114,8 +115,18 @@ public class Window extends JPanel implements ActionListener {
     
     
     public void actionPerformed(ActionEvent e) {
-      this.
-       
+        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y > 500){
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = 0;
+        }  else 
+        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y < 0){
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = 499;
+        }  
+         if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x > 500){
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = 0;
+        }   else
+        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x < 0){
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = 499;
+        }  
        repaint();
       
     }
@@ -151,7 +162,7 @@ public class Window extends JPanel implements ActionListener {
 
         
         
-        Session s = new Session ("10.59.0.23");
+        Session s = new Session ("172.16.26.55");
         s.intiateSession(Settings.userName, Settings.password);
         String[] array = {"FetchStorage"};
         Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array,null).RESPONCE_ASSETS[0];

@@ -25,6 +25,7 @@ public class Init {
     public static void main(String[] args) {
        try {
            Print.print("Starting on: "+Network.getIp());
+           System.out.println(Network.getIp());
            
              Storage.LOCAL_STORAGE = new Storage(10000);
              String name = JOptionPane.showInputDialog(null, "What is your name?");
