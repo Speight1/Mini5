@@ -5,7 +5,6 @@
  */
 package GUI;
 
-
 import Client.Session;
 import Events.movement;
 import GUI.Processing;
@@ -41,37 +40,36 @@ import javax.swing.*;
  * @author mathew
  */
 public class Window extends JPanel implements ActionListener {
-   
+
     public int RefreshRate = 90;
     Timer timer;
     public int velocity = 10;
     public Controller m = new Controller();
-    public Window(){
-     timer = new Timer((1000/RefreshRate), (ActionListener) this);
-     this.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-              
-                
-        int code = e.getKeyCode();
-        
 
-        if (code == m.UP) {
-            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y-=velocity;
-        }
-        if (code == m.DOWN) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y+=velocity;
-        }
-        if (code == m.RIGHT) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x-=velocity;
-        }
-        if (code == m.LEFT) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x+=velocity;
-        }
+    public Window() {
+        timer = new Timer((1000 / RefreshRate), (ActionListener) this);
+        this.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+                int code = e.getKeyCode();
+
+                if (code == m.UP) {
+                    Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y -= velocity;
+                }
+                if (code == m.DOWN) {
+                    Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y += velocity;
+                }
+                if (code == m.RIGHT) {
+                    Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x -= velocity;
+                }
+                if (code == m.LEFT) {
+                    Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x += velocity;
+                }
             }
         });
-     
-     
-     /*this.addMouseListener(new MouseListener() {
+
+        /*this.addMouseListener(new MouseListener() {
     @Override
     public void mouseClicked(MouseEvent e) {
          Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = e.getX();
@@ -99,40 +97,34 @@ public class Window extends JPanel implements ActionListener {
           
          }
      });
-*/
-        
-        
+         */
     }
-    public void paintComponent(Graphics g){
-         Graphics2D graph = (Graphics2D) g;
-         g.clearRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
+
+    public void paintComponent(Graphics g) {
+        Graphics2D graph = (Graphics2D) g;
+        g.clearRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         Processing.drawStorage(graph, Storage.LOCAL_STORAGE);
-         graph.finalize();
-         this.grabFocus();
-           timer.start();
+        graph.finalize();
+        this.grabFocus();
+        timer.start();
     }
-    
-    
-    
+
     public void actionPerformed(ActionEvent e) {
-        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y > 495){
+        if (Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y > 495) {
             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = 0;
-        }  else 
-        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y < 0){
+        } else if (Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y < 0) {
             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y = 495;
-        }  
-         if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x > 495){
+        }
+        if (Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x > 495) {
             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = 0;
-        }   else
-        if(Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x < 0){
+        } else if (Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x < 0) {
             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x = 495;
-        }  
-       repaint();
-      
+        }
+        repaint();
+
     }
-    
-    
-  //   @Override
+
+    //   @Override
     public void keyPressed(KeyEvent e) {
         Print.print("EEE         ");
         int code = e.getKeyCode();
@@ -142,60 +134,50 @@ public class Window extends JPanel implements ActionListener {
             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y--;
         }
         if (code == m.DOWN) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y++;
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y++;
         }
         if (code == m.RIGHT) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x++;
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.x++;
         }
         if (code == m.LEFT) {
-             Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y--;
+            Storage.LOCAL_STORAGE.sprites[0].spriteLocation.y--;
         }
 
     }
-    
-    
-    
-    public static void main(String[] args){
-        Print.print("Starting");
-        
-       
 
-        
-        
-        Session s = new Session ("192.168.1.1");
+    public static void main(String[] args) {
+        Print.print("Starting");
+
+        Session s = new Session("192.168.1.1");
         s.intiateSession(Settings.userName, Settings.password);
         String[] array = {"FetchStorage"};
-        Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array,null).RESPONCE_ASSETS[0];
-        
+        Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array, null).RESPONCE_ASSETS[0];
+
         Window w = new Window();
-      
-        
+
         JFrame f = new JFrame();
         f.setSize(500, 500);
         w.setBounds(f.getBounds());
-       
+
         f.add(w);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
-        
-        
-        new Thread(new Runnable(){public void run(){
-        
-        while(true){
-            try{Thread.sleep(100);}catch(Exception e){}
-             Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array,null).RESPONCE_ASSETS[0];
-            
-        }
-        
-        
-        
-        }}).start();
-        
-        
-       
-        
-        
+
+        new Thread(new Runnable() {
+            public void run() {
+
+                while (true) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                    }
+                    Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array, null).RESPONCE_ASSETS[0];
+
+                }
+
+            }
+        }).start();
+
     }
-    
-    
+
 }
