@@ -28,9 +28,19 @@ public class Init {
            System.out.println(Network.getIp());
            
              Storage.LOCAL_STORAGE = new Storage(10000);
-             String name = JOptionPane.showInputDialog(null, "What is your name?");
+             
+             
+             //Get Players username
+             boolean nameEntered = false;
+             String name = "";
+             while(!nameEntered){
+                name = JOptionPane.showInputDialog(null, "What is your name?");
+                 if(name != null){
+                     break;
+                 }
+             }
+             
         Storage.LOCAL_STORAGE.addNewSprite(new Sprite(400,400, name));
-        Storage.LOCAL_STORAGE.addNewSprite(new Sprite(20,20, "Toby"));
         
         Window w = new Window();
       
