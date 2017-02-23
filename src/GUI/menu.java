@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.menu;
+package GUI;
 
 import Network.Init;
 import java.awt.Color;
@@ -48,7 +48,6 @@ public class menu extends JFrame {
         setBackground(Color.decode("#2c3e50"));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.white);
-        setPreferredSize(new java.awt.Dimension(500, 150));
         setResizable(false);
         setSize(new java.awt.Dimension(500, 150));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
