@@ -10,6 +10,7 @@ import Network.Network;
 import Network.RequestHeader;
 import Network.ResponceHeader;
 import Network.Settings;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -81,6 +82,18 @@ public class Session {
         return false;
         }
     }
+    
+    public void movePlayer(int x, int y){
+        
+    }
+    
+    public void changeName(String name){
+        
+    }
+    public void changeIcon(BufferedImage img){
+        
+    }
+    
     
    static  double time =0;
    //static boolean run = true;
