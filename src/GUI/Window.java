@@ -148,7 +148,7 @@ public class Window extends JPanel implements ActionListener {
     public static void main(String[] args) {
         Print.print("Starting");
 
-        Session s = new Session("192.168.1.1");
+        Session s = new Session("192.168.1.16");
         s.intiateSession(Settings.userName, Settings.password);
         String[] array = {"FetchStorage"};
         Storage.LOCAL_STORAGE = (Storage) s.executeCommand(array, null).RESPONCE_ASSETS[0];
